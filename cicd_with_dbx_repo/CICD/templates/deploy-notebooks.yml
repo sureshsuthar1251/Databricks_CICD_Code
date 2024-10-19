@@ -1,3 +1,4 @@
+# these parameteres will be passed by master file (cicd-pipelines.yml)
 parameters:
   - name: stageId
     type: string
