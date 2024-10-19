@@ -45,8 +45,10 @@ stages:
 
                       $databricksWorkspaceInfo = (az databricks workspace show --ids $databricksWorkspace.id | ConvertFrom-Json)
 
+                      # here for authentication purpose we need Token, thats why we call DatabricskToken.ps1 file that will return us the token.
                       $bearerToken = $(Build.Repository.LocalPath)/CICD/scripts/DatabricksToken.ps1 -databricksWorkspaceResourceId $databricksWorkspaceInfo.id -databricksWorkspaceUrl $databricksWorkspaceInfo.workspaceUrl
 
+                      # using these 3 lines we will deploy our code from main branch to Live folder of Dev Workspace.
                       Install-Module -Name azure.databrick.cicd.tools -Force -Scope CurrentUser
                       Import-Module -Name azure.databricks.cicd.tools
                       Import-DatabricksFolder -BearerToken $bearerToken -Region $databricksWorkspaceInfo.location -LocalPath $(Build.Repository.LocalPath)/${{parameters.notebookPath}} -DatabricksPath '/live' -Clean
