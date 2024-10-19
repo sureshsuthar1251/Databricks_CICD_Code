@@ -21,8 +21,8 @@ stages:
     parameters:
       stageId: "Deploy_to_Dev_Environment"
       env: "dev"
-      # these 3 variables environementName, reousrcegroupName and service conncection we have to create Devops side.
-      environmentName: $(dev-environment-name)
-      resourceGroupName: $(dev-resource-group-name)
-      serviceConnection: $(dev-service-connection-name)
+      # these 3 variables environementName, reousrcegroupName and service conncection we have to create Devops side and pass the value from Devops side.
+      environmentName: $(environmentName)
+      resourceGroupName: $(resourceGroupName)
+      serviceConnection: $(serviceConnection)
       notebooksPath: $(notebooksPath)
